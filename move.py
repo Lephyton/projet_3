@@ -8,4 +8,4 @@ for ligne in lab:
     else :
         print(ligne)
   
-    n_ligne = n_ligne +1
+    n_ligne = n_ligne + 1
