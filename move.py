@@ -1,10 +1,22 @@
 
-def sho_lab():
-    data[0][1]="x"
 
 
 
 
+
+
+
+def show_elemt():
+    i = 0
+    while i < 3:
+        x_rand = random.randint(1, (len(data)-1))
+        y_rand = random.randint(1, (len(data)-1))
+        if data[y_rand ][x_rand] == " ":
+            data[y_rand][x_rand] = "A"
+            i +=1
+
+        
+  
 
 
 
