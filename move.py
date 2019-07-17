@@ -80,3 +80,11 @@ def deplacement_perso (data, pos_perso, choix):
     return new_pos
 
 
+def sortie(data, pos_col, pos_ligne):
+    global num_ob 
+
+    if data[pos_ligne][pos_col] == "O" and num_ob == 3 :
+        print("Bravoooo !!!! vous avez gagné et vous avez : " + num_ob + " objets")
+    else:
+        print("Désolé !!!! vous avez perdu et vous avez seulement : " + num_ob + " objets")
+

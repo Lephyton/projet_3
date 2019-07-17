@@ -1,5 +1,7 @@
 import random 
+
 num_ob = 0
+
 def read_lab ():
     """
     this function loads 
@@ -28,6 +30,10 @@ def verification_deplacement(data, pos_col, pos_ligne):
         data[pos_ligne][pos_col] = " "
         num_ob = num_ob + 1
         return True 
+    elif data[pos_ligne][pos_col] == "O":
+        data[pos_ligne][pos_col] == " "
+        print(bravoo)
+        return True
     elif data[pos_ligne][pos_col] != " " :
         return False
     else :
@@ -56,8 +62,6 @@ def deplacement_perso (data, pos_perso, choix):
         print("déplacement impossible")
         return pos_perso
     return new_pos
-  
-
 
 def show_elemt():
     i = 0
@@ -67,6 +71,14 @@ def show_elemt():
         if data[y_rand ][x_rand] == " ":
             data[y_rand][x_rand] = "A"
             i +=1
+
+
+
+
+
+
+
+
 
 
 data = read_lab()
@@ -81,6 +93,8 @@ while continuer :
     data[new_pos[1]][new_pos[0]] = "X"
     data[pos_perso[1]][pos_perso[0]] = " "
     pos_perso = new_pos
+    if new_pos == [-1, -1] and num_ob == 3:
+        print("bravoo")
     print(num_ob)
 
 
