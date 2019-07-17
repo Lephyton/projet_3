@@ -16,23 +16,6 @@ def show_elemt():
             i +=1
 
         
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 perso = "X"
 pos_perso = [1, 1]
 n_ligne = 0
@@ -70,5 +53,30 @@ for ligne in data:
     else :
         print(ligne)
 n_ligne += 1
+
+
+
+
+
+
+
+
+
+
+def deplacement_perso (data, pos_perso, choix):
+    new_pos = [pos_perso[0], pos_perso[1]]
+    if choix   == "H" :
+       new_pos = [new_pos[0], new_pos[1] -1]
+    elif choix == "B" :
+       new_pos = [ new_pos[0], new_pos[1] +1]
+    elif choix == "G":
+       new_pos =  [new_pos[0] -1, new_pos[1]]
+    elif choix == "J" :
+       new_pos =  [new_pos[0] +1, new_pos[1]]
+    dep = verification_deplacement(data, new_pos[0], new_pos[1])
+    if dep == False:
+        print("déplacement impossible")
+        return pos_perso
+    return new_pos
 
 

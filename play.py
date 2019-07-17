@@ -1,4 +1,5 @@
 import random 
+num_ob = 0
 def read_lab ():
     """
     this function loads 
@@ -18,12 +19,15 @@ def show_lab (data, perso, pos_perso):
         n_ligne = n_ligne +1
     
 def verification_deplacement(data, pos_col, pos_ligne):
-        
+    global num_ob
     n_cols = len(data[0])
     n_lignes = len(data)
-
     if pos_ligne < 0 or pos_col < 0 or pos_ligne > (n_lignes -1) or pos_col > (n_cols -1) :
         return False
+    elif data[pos_ligne][pos_col] == "A":
+        data[pos_ligne][pos_col] = " "
+        num_ob = num_ob + 1
+        return True 
     elif data[pos_ligne][pos_col] != " " :
         return False
     else :
@@ -64,10 +68,10 @@ def show_elemt():
             data[y_rand][x_rand] = "A"
             i +=1
 
+
 data = read_lab()
 show_elemt()
 data[1][1] = "X"
-continuer = True
 pos_perso = [1,1]
 continuer = True
 while continuer :
@@ -77,6 +81,8 @@ while continuer :
     data[new_pos[1]][new_pos[0]] = "X"
     data[pos_perso[1]][pos_perso[0]] = " "
     pos_perso = new_pos
+    print(num_ob)
+
 
 
 
