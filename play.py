@@ -1,6 +1,6 @@
 import random 
 
-num_ob = 0
+num_ob = 2
 
 def read_lab ():
     """
@@ -28,12 +28,11 @@ def verification_deplacement(data, pos_col, pos_ligne):
         return False
     elif data[pos_ligne][pos_col] == "A":
         data[pos_ligne][pos_col] = " "
-        num_ob = num_ob + 1
-        return True 
+        num_ob += 1
+        return True  
     elif data[pos_ligne][pos_col] == "O":
-        data[pos_ligne][pos_col] == " "
-        print(bravoo)
-        return True
+        return True  
+
     elif data[pos_ligne][pos_col] != " " :
         return False
     else :
@@ -73,7 +72,18 @@ def show_elemt():
             i +=1
 
 
-
+def sortie (data, pos_col, pos_ligne):
+    print(data[pos_col][pos_ligne])
+    if data[pos_col][pos_ligne] == "O" :
+        if num_ob == 3 :
+            print("Bravoooo !!!! vous avez gagné et vous avez : " + str(num_ob )+ " objets")
+            return True
+        else:
+            print("Désolé !!!! vous avez perdu et vous avez seulement : " + str(num_ob )+ " objets")
+            return True
+    return False
+ 
+    
 
 
 
@@ -90,16 +100,11 @@ while continuer :
     show_lab (data, "X", pos_perso)
     choix = choix_du_joueur ()
     new_pos = deplacement_perso(data, pos_perso, choix)
-    data[new_pos[1]][new_pos[0]] = "X"
+    if sortie(data, new_pos[1], new_pos[0]):
+        continuer = False
     data[pos_perso[1]][pos_perso[0]] = " "
+    data[new_pos[1]][new_pos[0]] = "X"
     pos_perso = new_pos
-    if new_pos == [-1, -1] and num_ob == 3:
-        print("bravoo")
     print(num_ob)
-
-
-
-
-
 
 
