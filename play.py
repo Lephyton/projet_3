@@ -1,4 +1,5 @@
 import random 
+import pygame 
 
 num_ob = 2
 
@@ -11,7 +12,7 @@ def read_lab ():
     data = fic.readlines()
     fic.close()
     for i in range(len(data)):
-        data[i] = list(data[i].strip())
+        data[i] = list(data[i])
     return data 
 
 def show_lab (data, perso, pos_perso):
@@ -67,9 +68,11 @@ def show_elemt():
     while i < 3:
         x_rand = random.randint(1, (len(data)-1))
         y_rand = random.randint(1, (len(data)-1))
+        print(x_rand, y_rand )
         if data[y_rand ][x_rand] == " ":
             data[y_rand][x_rand] = "A"
             i +=1
+        
 
 
 def sortie (data, pos_col, pos_ligne):
