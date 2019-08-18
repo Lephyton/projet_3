@@ -22,9 +22,10 @@ class Level:
         self.data = data 
 
     def show_lab (self, window):
-        wall = pygame.image.load("images/structures.png").convert()
-        star = pygame.image.load("images/personnages.png").convert()
-        end = pygame.image.load("images/Gardien.png").convert()
+        wall = pygame.image.load('structures.1.png').convert()
+        star = pygame.image.load(img_start).convert()
+        end = pygame.image.load(img_end).convert()
+        floor = pygame.image.load(img_back).convert()
         num_ligne = 0
         for ligne in self.data:
             num_case = 0
@@ -35,7 +36,9 @@ class Level:
                     window.blit(wall, (x,y))
                 elif sprite == 'X':		
                         window.blit(star, (x,y))
-                elif sprite == 'O':		
+                elif sprite == ' ':
+                    window.blit(floor, (x,y))
+                elif sprite == 'O':		   
                         window.blit(end, (x,y))
                 num_case += 1
             num_ligne += 1
