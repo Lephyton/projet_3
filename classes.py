@@ -22,7 +22,7 @@ class Level:
         self.data = data 
 
     def show_lab (self, window):
-        wall = pygame.image.load('structures.1.png').convert()
+        wall = pygame.image.load(img_wall).convert()
         star = pygame.image.load(img_start).convert()
         end = pygame.image.load(img_end).convert()
         floor = pygame.image.load(img_back).convert()
@@ -36,8 +36,6 @@ class Level:
                     window.blit(wall, (x,y))
                 elif sprite == 'X':		
                         window.blit(star, (x,y))
-                elif sprite == ' ':
-                    window.blit(floor, (x,y))
                 elif sprite == 'O':		   
                         window.blit(end, (x,y))
                 num_case += 1
@@ -72,6 +70,7 @@ class Perso:
             print("déplacement impossible")
             return pos_perso
         return new_pos
+
     def verification_deplacement(self, data, pos_col, pos_ligne):
         global num_ob
         n_cols = len(data[0])
@@ -97,5 +96,16 @@ class Perso:
             choix = input("Entrer à nouveau votre choix : H = haut, B = bas, G = gauche, J = droite :")
         return choix
 
-
+ 
+    def sortie (self, data, pos_col, pos_ligne):
+        print(data[pos_col][pos_ligne])
+        if data[pos_col][pos_ligne] == "O" :
+            if num_ob == 3 :
+                print("Bravoooo !!!! vous avez gagné et vous avez : " + str(num_ob )+ " objets")
+                return True
+            else:
+                print("Désolé !!!! vous avez perdu et vous avez seulement : " + str(num_ob )+ " objets")
+                return True
+        return False
+ 
    

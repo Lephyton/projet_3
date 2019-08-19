@@ -12,23 +12,7 @@ pygame.display.set_icon(icon)
 pygame.display.set_caption(title)
 
 
-    
-def sortie (data, pos_col, pos_ligne):
-    print(data[pos_col][pos_ligne])
-    if data[pos_col][pos_ligne] == "O" :
-        if num_ob == 3 :
-            print("Bravoooo !!!! vous avez gagné et vous avez : " + str(num_ob )+ " objets")
-            return True
-        else:
-            print("Désolé !!!! vous avez perdu et vous avez seulement : " + str(num_ob )+ " objets")
-            return True
-    return False
- 
-
-
-
-
-
+   
 
 level = Level()
 level.read_lab()
@@ -36,10 +20,14 @@ level.show_elemt()
 perso = Perso()
 level.data[1][1] = "X"
 pos_perso = [1,1]
+
 continuer = True
 while continuer :
-
     level.show_lab (window)
+
+    for event in pygame.event.get():
+        if event.type == QUIT :
+            continuer = False  
     choix = perso.choix_du_joueur ()
     new_pos = perso.deplacement_perso(level.data, pos_perso, choix)
     if sortie(level.data, new_pos[1], new_pos[0]):
@@ -48,5 +36,5 @@ while continuer :
     level.data[new_pos[1]][new_pos[0]] = "X"
     pos_perso = new_pos
     print(num_ob)
-
+   
 
