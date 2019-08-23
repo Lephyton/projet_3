@@ -16,25 +16,39 @@ pygame.display.set_caption(title)
 
 level = Level()
 level.read_lab()
-level.show_elemt()
+level.show_elemt(window)
 perso = Perso()
-level.data[1][1] = "X"
-pos_perso = [1,1]
+level.data[0][0] = "X"
+pos_perso = [0,0]
 
 continuer = True
 while continuer :
     level.show_lab (window)
+    choix = " "
+    event = pygame.event.wait()
+    print(event)
+    if event.type == QUIT :
+        continuer = False  
+    if not event.type == KEYDOWN:
+        continue
+    if event.key == K_RIGHT:
+        choix = "J"
+    if event.key == K_LEFT:
+        choix = "G"
+    if event.key == K_UP:
+        choix = "H"
+    if event.key == K_DOWN:
+        choix = "B"
+    print(choix)
 
-    for event in pygame.event.get():
-        if event.type == QUIT :
-            continuer = False  
-    choix = perso.choix_du_joueur ()
     new_pos = perso.deplacement_perso(level.data, pos_perso, choix)
-    if sortie(level.data, new_pos[1], new_pos[0]):
+    if perso.sortie(level.data, new_pos[1], new_pos[0]):
         continuer = False
     level.data[pos_perso[1]][pos_perso[0]] = " "
     level.data[new_pos[1]][new_pos[0]] = "X"
     pos_perso = new_pos
-    print(num_ob)
+    print(perso.num_ob)
+
+   
    
 

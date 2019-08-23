@@ -22,38 +22,41 @@ class Level:
         self.data = data 
 
     def show_lab (self, window):
-        wall = pygame.image.load(img_wall).convert()
-        star = pygame.image.load(img_start).convert()
+               
+        wall = pygame.transform.scale2x(pygame.image.load(img_wall).convert())
+        star =pygame.image.load(img_start).convert()
         end = pygame.image.load(img_end).convert()
-        floor = pygame.image.load(img_back).convert()
+        floor = pygame.transform.scale2x(pygame.image.load(img_back).convert())
+        gift_1  = pygame.image.load(img_object_1).convert() 
+        gift_2  = pygame.image.load(img_object_2).convert()
+        gift_3  = pygame.image.load(img_object_3).convert()
         num_ligne = 0
         for ligne in self.data:
             num_case = 0
             for sprite in ligne:
                 x = num_case * size_sprite
                 y = num_ligne * size_sprite
-                if sprite == '#':
-                    window.blit(wall, (x,y))
-                elif sprite == 'X':		
-                        window.blit(star, (x,y))
-                elif sprite == 'O':		   
-                        window.blit(end, (x,y))
+                maping_sprites ={"X": star, "#": wall, "A":gift_2, "B":gift_1, "C":gift_3, "O":end, " ":floor  }
+                if sprite in maping_sprites:
+                    window.blit(floor,(x,y))
+                    window.blit(maping_sprites[sprite],(x,y))
                 num_case += 1
             num_ligne += 1
         pygame.display.flip()
 
 
-    def show_elemt(self):
+    def show_elemt(self, window):   
+        gifts = {0:"A", 1:"B", 2:"C"}  
         i = 0
         while i < 3:
             x_rand = random.randint(1, (len(self.data)-1))
             y_rand = random.randint(1, (len(self.data)-1))
-            print(x_rand, y_rand )
             if self.data[y_rand ][x_rand] == " ":
-                self.data[y_rand][x_rand] = "A"
+                self.data[y_rand][x_rand] = gifts[i]
                 i +=1
+        
 class Perso:
-    num_ob = 2
+    num_ob = 0
 
     def deplacement_perso (self, data, pos_perso, choix):
         new_pos = [pos_perso[0], pos_perso[1]]
@@ -65,21 +68,20 @@ class Perso:
             new_pos =  [new_pos[0] -1, new_pos[1]]
         elif choix == "J" :
             new_pos =  [new_pos[0] +1, new_pos[1]]
-            dep = verification_deplacement(data, new_pos[0], new_pos[1])
+        dep = self.verification_deplacement(data, new_pos[0], new_pos[1])
         if dep == False:
             print("déplacement impossible")
             return pos_perso
         return new_pos
 
     def verification_deplacement(self, data, pos_col, pos_ligne):
-        global num_ob
         n_cols = len(data[0])
         n_lignes = len(data)
         if pos_ligne < 0 or pos_col < 0 or pos_ligne > (n_lignes -1) or pos_col > (n_cols -1) :
             return False
-        elif data[pos_ligne][pos_col] == "A":
+        elif data[pos_ligne][pos_col] in ["A", "B", "C"]:
             data[pos_ligne][pos_col] = " "
-            num_ob += 1
+            self.num_ob += 1
             return True  
         elif data[pos_ligne][pos_col] == "O":
             return True  
@@ -100,11 +102,11 @@ class Perso:
     def sortie (self, data, pos_col, pos_ligne):
         print(data[pos_col][pos_ligne])
         if data[pos_col][pos_ligne] == "O" :
-            if num_ob == 3 :
-                print("Bravoooo !!!! vous avez gagné et vous avez : " + str(num_ob )+ " objets")
+            if self.num_ob == 3 :
+                print("Bravoooo !!!! vous avez gagné et vous avez : " + str(self.num_ob )+ " objets")
                 return True
             else:
-                print("Désolé !!!! vous avez perdu et vous avez seulement : " + str(num_ob )+ " objets")
+                print("Désolé !!!! vous avez perdu et vous avez seulement : " + str(self.num_ob)+ " objets")
                 return True
         return False
  
