@@ -18,11 +18,17 @@ from classes import *
 from constants import *
 
 def main ():
+    #pygame initialization
     pygame.init()
 
+    #Open the Pygame window
     window = pygame.display.set_mode((size_window, size_window))
+
+    #Icon
     icon = pygame.image.load(image_icon)
     pygame.display.set_icon(icon)
+
+    #title
     pygame.display.set_caption(title)
 
     level = Level()
@@ -32,14 +38,15 @@ def main ():
     level.data[0][0] = "X"
     pos_perso = [0,0]
 
-    continuer = True
-    while continuer :
+    play = True
+    #Main loop
+    while play :
         level.show_lab (window)
         choix = " "
         event = pygame.event.wait()
         print(event)
         if event.type == QUIT :
-            continuer = False  
+            play = False  
         if not event.type == KEYDOWN:
             continue
         if event.key == K_RIGHT:
@@ -53,13 +60,13 @@ def main ():
         print(choix)
         new_pos = order.order_move(level.data, pos_perso, choice)
         if order.game_over(level.data, new_pos[1], new_pos[0]):
-            continuer = False
+            play = False
         level.data[pos_perso[1]][pos_perso[0]] = " "
         level.data[new_pos[1]][new_pos[0]] = "X"
         pos_perso = new_pos
         print(order.num_ob)
 if __name__ == "__main__":
-    
+
     main()
    
    
