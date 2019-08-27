@@ -27,7 +27,7 @@ pygame.display.set_caption(title)
 level = Level()
 level.read_lab()
 level.show_elemt(window)
-perso = Perso()
+order = Order()
 level.data[0][0] = "X"
 pos_perso = [0,0]
 
@@ -51,13 +51,13 @@ while continuer :
         choix = "B"
     print(choix)
 
-    new_pos = perso.deplacement_perso(level.data, pos_perso, choix)
-    if perso.sortie(level.data, new_pos[1], new_pos[0]):
+    new_pos = order.order_move(level.data, pos_perso, choice)
+    if order.game_over(level.data, new_pos[1], new_pos[0]):
         continuer = False
     level.data[pos_perso[1]][pos_perso[0]] = " "
     level.data[new_pos[1]][new_pos[0]] = "X"
     pos_perso = new_pos
-    print(perso.num_ob)
+    print(order.num_ob)
 
    
    
