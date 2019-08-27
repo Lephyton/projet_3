@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 # -*- coding: Utf-8 -*
+
 """
 Game help MacGyver to escape
 in this Game MacGyver must find through a labyrinth three objects before presenting himself to the keeper.
-
-
 python script 
 files : play.py, classes.py, constants.py, lab.txt and images folder
 

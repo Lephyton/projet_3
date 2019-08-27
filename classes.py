@@ -3,47 +3,52 @@
 import pygame
 import random
 from pygame.locals import * 
-from constantes import *
+
+from constants import *
 
 class Level:
-    def __init__(self):
+
+    """
+    classe for reading and displaying the maze and
+    the elements inside.
+    """
+    def __init__(self, wall, macg, keep, floor, gift_1, gift_2, gift_3):
         self.structure = 0
+        self.wall = pygame.transform.scale2x(pygame.image.load(img_wall).convert())
+        self.macg =pygame.image.load(img_start).convert()
+        self.keep = pygame.image.load(img_end).convert()
+        self.floor = pygame.transform.scale2x(pygame.image.load(img_back).convert())
+        self.gift_1  = pygame.image.load(img_object_1).convert() 
+        self.gift_2  = pygame.image.load(img_object_2).convert()
+        self.gift_3  = pygame.image.load(img_object_3).convert()
 
     def read_lab (self):
-        """
-        this function loads 
-        labirynthe from the file lab.txt
-        """
-        fic = open('lab.txt', 'r') 
-        data = fic.readlines()
-        fic.close()
-        for i in range(len(data)):
+       
+        #reading maze file
+        with open('lab.txt', 'r') as fic :
+            data = fic.readlines()
+            fic.close()
+        for i in enumerate(data):
             data[i] = list(data[i])
         self.data = data 
 
     def show_lab (self, window):
-               
-        wall = pygame.transform.scale2x(pygame.image.load(img_wall).convert())
-        star =pygame.image.load(img_start).convert()
-        end = pygame.image.load(img_end).convert()
-        floor = pygame.transform.scale2x(pygame.image.load(img_back).convert())
-        gift_1  = pygame.image.load(img_object_1).convert() 
-        gift_2  = pygame.image.load(img_object_2).convert()
-        gift_3  = pygame.image.load(img_object_3).convert()
+
+        #loads maze from the file lab.txt
         num_ligne = 0
         for ligne in self.data:
             num_case = 0
             for sprite in ligne:
+                #Have calculated the actual position in pixels
                 x = num_case * size_sprite
                 y = num_ligne * size_sprite
-                maping_sprites ={"X": star, "#": wall, "A":gift_2, "B":gift_1, "C":gift_3, "O":end, " ":floor  }
+                maping_sprites = {"X": self.macg, "#": self.wall, "A": self.gift_2, "B": self.gift_1, "C": self.gift_3, "O": self.keep, " ": self.floor  }
                 if sprite in maping_sprites:
-                    window.blit(floor,(x,y))
+                    window.blit(self.floor,(x,y))
                     window.blit(maping_sprites[sprite],(x,y))
                 num_case += 1
             num_ligne += 1
         pygame.display.flip()
-
 
     def show_elemt(self, window):   
         gifts = {0:"A", 1:"B", 2:"C"}  
