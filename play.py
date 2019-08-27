@@ -1,8 +1,22 @@
+#!/usr/bin/python3
+# -*- coding: Utf-8 -*
+"""
+Game help MacGyver to escape
+in this Game MacGyver must find through a labyrinth three objects before presenting himself to the keeper.
+
+
+python script 
+files : play.py, classes.py, constants.py, lab.txt and images folder
+
+"""
+
+
 import random 
 import pygame 
 from pygame.locals import *
+
 from classes import *
-from constantes import *
+from constants import *
 
 pygame.init()
 
@@ -10,9 +24,6 @@ window = pygame.display.set_mode((size_window, size_window))
 icon = pygame.image.load(image_icon)
 pygame.display.set_icon(icon)
 pygame.display.set_caption(title)
-
-
-   
 
 level = Level()
 level.read_lab()
