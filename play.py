@@ -59,6 +59,7 @@ def main ():
         pos_perso = new_pos
         print(order.num_ob)
 if __name__ == "__main__":
+    
     main()
    
    

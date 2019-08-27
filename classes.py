@@ -36,6 +36,7 @@ class Level:
 
         #loads maze from the file lab.txt
         num_ligne = 0
+        maping_sprites = {"X": self.macg, "#": self.wall, "A": self.gift_2, "B": self.gift_1, "C": self.gift_3, "O": self.keep, " ": self.floor  }
         for ligne in self.data:
             num_case = 0
             for sprite in ligne:
@@ -43,7 +44,6 @@ class Level:
                 x = num_case * size_sprite
                 y = num_ligne * size_sprite
                 #X = Macgaver, # = wall, (A,B,C) = objects, O = Keeper " " = floor 
-                maping_sprites = {"X": self.macg, "#": self.wall, "A": self.gift_2, "B": self.gift_1, "C": self.gift_3, "O": self.keep, " ": self.floor  }
                 if sprite in maping_sprites:
                     window.blit(self.floor,(x,y))
                     window.blit(maping_sprites[sprite],(x,y))
