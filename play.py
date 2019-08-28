@@ -42,7 +42,7 @@ def main ():
     #Main loop
     while play :
         level.show_lab (window)
-        choix = " "
+        choice = " "
         event = pygame.event.wait()
         print(event)
         if event.type == QUIT :
@@ -50,14 +50,14 @@ def main ():
         if not event.type == KEYDOWN:
             continue
         if event.key == K_RIGHT:
-            choix = "J"
+            choice = "J"
         if event.key == K_LEFT:
-            choix = "G"
+            choice = "G"
         if event.key == K_UP:
-            choix = "H"
+            choice = "H"
         if event.key == K_DOWN:
-            choix = "B"
-        print(choix)
+            choice = "B"
+        print(choice)
         new_pos = order.order_move(level.data, pos_perso, choice)
         if order.game_over(level.data, new_pos[1], new_pos[0]):
             play = False

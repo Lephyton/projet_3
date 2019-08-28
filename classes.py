@@ -12,7 +12,7 @@ class Level:
     classe for reading and displaying the maze and all
     the elements inside:(Macgyver, keeper, objects).
     """
-    def __init__(self, wall, macg, keep, floor, gift_1, gift_2, gift_3):
+    def __init__(self):
         self.structure = 0
         self.wall = pygame.transform.scale2x(pygame.image.load(img_wall).convert())
         self.macg =pygame.image.load(img_start).convert()
@@ -28,7 +28,7 @@ class Level:
         with open('lab.txt', 'r') as fic :
             data = fic.readlines()
             fic.close()
-        for i in enumerate(data):
+        for i, elemt in enumerate(data):
             data[i] = list(data[i])
         self.data = data 
 
@@ -81,7 +81,7 @@ class Order:
         elif choice == "J" :
             new_pos =  [new_pos[0] +1, new_pos[1]]
         dep = self.verif_order(data, new_pos[0], new_pos[1])
-        if dep == False:
+        if not dep :
             print("déplacement impossible")
             return pos_perso
         return new_pos
