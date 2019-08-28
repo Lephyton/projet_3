@@ -117,7 +117,6 @@ class Order:
             choice = input("Entrer à nouveau votre choix : H = haut, B = bas, G = gauche, J = droite :")
         return choice
 
- 
     def game_over (self, data, pos_col, pos_ligne):
 
         """
