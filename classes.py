@@ -78,6 +78,20 @@ class Order:
 
     num_ob = 0  # counter of objects
 
+    def player_choice(self):
+        """
+        recovery and verification of the player's choice
+        """
+        choice = input(
+            "Entrer votre choix : H = haut, B = bas, G = gauche, J = droite : "
+        )
+        while len(choice) != 1 or choice not in ["H", "B", "G", "J"]:
+            print("Vous n'avez pas fait un bon choix, faite un choix ")
+            choice = input(
+                "Entrer à nouveau votre choix : H = haut, B = bas, G = gauche, J = droite :"
+            )
+        return choice
+        
     def order_move(self, data, pos_perso, choice):
 
         # motion control function
@@ -121,20 +135,6 @@ class Order:
             return False
         else:
             return True
-
-    def player_choice(self):
-        """
-        recovery and verification of the player's choice
-        """
-        choice = input(
-            "Entrer votre choix : H = haut, B = bas, G = gauche, J = droite : "
-        )
-        while len(choice) != 1 or choice not in ["H", "B", "G", "J"]:
-            print("Vous n'avez pas fait un bon choix, faite un choix ")
-            choice = input(
-                "Entrer à nouveau votre choix : H = haut, B = bas, G = gauche, J = droite :"
-            )
-        return choice
 
     def game_over(self, data, pos_col, pos_ligne):
 
