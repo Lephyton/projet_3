@@ -1,0 +1,3 @@
+black==19.3b0
+cx-Freeze==6.0
+pylint==2.3.1
